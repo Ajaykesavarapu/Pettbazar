@@ -72,6 +72,8 @@ app.use("/api", router);
 app.get("/", (_req, res) => {
   res.json({ status: "ok", message: "PettBazar API Server" });
 });
+app.get("/favicon.ico", (_req, res) => res.status(204).end());
+app.get("/favicon.png", (_req, res) => res.status(204).end());
 
 // In production, serve the Vite-built frontend (skip on Vercel)
 if (isProduction && process.env.VERCEL !== "1") {
