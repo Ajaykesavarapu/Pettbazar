@@ -1,9 +1,10 @@
 {
   "cleanUrls": true,
+  "outputDirectory": "dist/public",
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://api.pettbazar.in/api/:path*"
+      "destination": "https://pettbazar-api-server.vercel.app/api/:path*"
     },
     {
       "source": "/(.*)",
