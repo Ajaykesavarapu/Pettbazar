@@ -66,8 +66,13 @@ app.use(express.urlencoded({ extended: true }));
 // API routes
 app.use("/api", router);
 
-// In production, serve the Vite-built frontend
-if (isProduction) {
+// Root path response for Vercel / health status
+app.get("/", (_req, res) => {
+  res.json({ status: "ok", message: "PettBazar API Server" });
+});
+
+// In production, serve the Vite-built frontend (skip on Vercel)
+if (isProduction && process.env.VERCEL !== "1") {
   const frontendDistPath = path.resolve(
     __dirname,
     "..",
