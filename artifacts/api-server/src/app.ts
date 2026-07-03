@@ -1,8 +1,11 @@
 import express, { type Express } from "express";
 import cors from "cors";
 import compression from "compression";
-import helmet from "helmet";
-import pinoHttp from "pino-http";
+import * as helmetModule from "helmet";
+import * as pinoHttpModule from "pino-http";
+
+const helmet = (helmetModule.default || helmetModule) as any;
+const pinoHttp = (pinoHttpModule.default || pinoHttpModule) as any;
 import path from "path";
 import { fileURLToPath } from "url";
 import router from "./routes";
