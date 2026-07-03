@@ -29,26 +29,28 @@ app.use(
 // Gzip compression
 app.use(compression());
 
-// Request logging
-app.use(
-  pinoHttp({
-    logger,
-    serializers: {
-      req(req: any) {
-        return {
-          id: req.id,
-          method: req.method,
-          url: req.url?.split("?")[0],
-        };
+// Request logging (skip on Vercel)
+if (process.env.VERCEL !== "1") {
+  app.use(
+    pinoHttp({
+      logger,
+      serializers: {
+        req(req: any) {
+          return {
+            id: req.id,
+            method: req.method,
+            url: req.url?.split("?")[0],
+          };
+        },
+        res(res: any) {
+          return {
+            statusCode: res.statusCode,
+          };
+        },
       },
-      res(res: any) {
-        return {
-          statusCode: res.statusCode,
-        };
-      },
-    },
-  }),
-);
+    }),
+  );
+}
 
 // CORS config
 app.use(
