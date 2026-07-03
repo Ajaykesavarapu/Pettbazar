@@ -8,8 +8,8 @@ const helmet = (helmetModule.default || helmetModule) as any;
 const pinoHttp = (pinoHttpModule.default || pinoHttpModule) as any;
 import path from "path";
 import { fileURLToPath } from "url";
-import router from "./routes";
-import { logger } from "./lib/logger";
+import router from "./routes/index.js";
+import { logger } from "./lib/logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
